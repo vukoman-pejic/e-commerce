@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const { first_name, last_name, invited_by_user_id } = req.body;
 
   if (!first_name || !last_name) {
-    return res.status(400).json({ error: 'First name and last name are required' });
+    return res.status(400).json({ error: 'first_name and last_name are required' });
   }
 
   try {

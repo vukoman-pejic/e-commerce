@@ -1,12 +1,14 @@
 import express from 'express';
 import pool from './db.js';
 import userRoutes from './routes/users.js';
+import purchaseRoutes from './routes/purchases.js';
 
 const app = express();
 app.use(express.json());
 
 // Routes
 app.use('/users', userRoutes);
+app.use('/purchases', purchaseRoutes);
 
 const PORT = process.env.PORT || 3000;
 
