@@ -3,18 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-      "dev": "nodemon src/index.js",
-      "start": "node src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "migrate:up": "cross-env node_modules/.bin/node-pg-migrate up -m migrations",
+    "migrate:down": "cross-env node_modules/.bin/node-pg-migrate down -m migrations"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bullmq": "^5.66.4",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "ioredis": "^5.8.2",
+    "node-pg-migrate": "^8.0.4",
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "nodemon": "^3.1.11"
   }
 }
