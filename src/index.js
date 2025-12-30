@@ -1,9 +1,9 @@
-const express = require("express");
+import express, { json } from "express";
 
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(json());
 
 app.get("/", (req, res) => {
   res.send("API radi 🚀");
