@@ -1,14 +1,25 @@
-import express, { json } from "express";
+import express from 'express';
+import pool from './db.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
-const PORT = 3000;
+app.use(express.json());
 
-app.use(json());
+// Routes
+app.use('/users', userRoutes);
 
-app.get("/", (req, res) => {
-  res.send("API radi 🚀");
+const PORT = process.env.PORT || 3000;
+
+app.get('/', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ message: 'Server is running!', dbTime: result.rows[0].now });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server pokrenut na portu ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
