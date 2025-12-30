@@ -1,11 +1,13 @@
-exports.up = (pgm) => {
-    pgm.createTable('app_user', { 
-        id: 'id',
-        first_name: { type: 'varchar(100)', notNull: true },
-        last_name: { type: 'varchar(100)', notNull: true },
-        invited_by_user_id: { type: 'integer', references: 'app_user', onDelete: 'SET NULL' },
-        created_at: { type: 'timestamp', notNull: true, default: pgm.func('current_timestamp') }
-    });
+export const shorthands = undefined;
+
+export const up = (pgm) => {
+  pgm.createTable('app_user', { 
+    id: 'id',
+    first_name: { type: 'varchar(100)', notNull: true },
+    last_name: { type: 'varchar(100)', notNull: true },
+    invited_by_user_id: { type: 'integer', references: 'app_user', onDelete: 'SET NULL' },
+    created_at: { type: 'timestamp', notNull: true, default: pgm.func('current_timestamp') }
+  });
 
   pgm.createTable("product", {
     id: { type: "serial", primaryKey: true },
@@ -39,9 +41,9 @@ exports.up = (pgm) => {
   });
 };
 
-exports.down = (pgm) => {
+export const down = (pgm) => {
   pgm.dropTable("bonus_payout");
   pgm.dropTable("purchase");
   pgm.dropTable("product");
-  pgm.dropTable("user");
+  pgm.dropTable("app_user");
 };

@@ -12,8 +12,9 @@ router.post('/', async (req, res) => {
 
   try {
     const result = await pool.query(
-      `INSERT INTO app_user (first_name, last_name, invited_by_user_id)
-       VALUES ($1, $2, $3) RETURNING *`,
+      `INSERT INTO app_user (first_name, last_name, invited_by_user_id, account_balance)
+        VALUES ($1, $2, $3, 1000)
+        RETURNING *;`,
       [first_name, last_name, invited_by_user_id || null]
     );
 
